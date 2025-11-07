@@ -1,0 +1,502 @@
+{
+	"info": {
+		"_postman_id": "162ae217-908d-4c59-9b36-df3085e0648a",
+		"name": "Post_Scripts",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31503603",
+		"_collection_link": "https://bold-shuttle-704393.postman.co/workspace/DummyAPI~dc9cb761-2b5f-4483-9b79-1c7b3275f7e8/collection/31503603-162ae217-908d-4c59-9b36-df3085e0648a?action=share&source=collection_link&creator=31503603"
+	},
+	"item": [
+		{
+			"name": "GetPostList",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 OK\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Status code is OK\", function () {",
+							"    pm.response.to.have.status(\"OK\");",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 1000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Check body data is array\", function () {",
+							"pm.expect(jsonData.data).to.be.an('array');",
+							"});",
+							"",
+							"pm.test(\"Check body data[0].id is string\", function () {",
+							"pm.expect(jsonData.data[0].id).to.be.a('string');",
+							"});",
+							"",
+							"pm.test(\"Check body data[0].link is undefined\", function () {",
+							"pm.expect(jsonData.data[0].link).to.be.an('undefined');",
+							"});",
+							"",
+							"pm.test(\"Check body data[19].id is string\", function () {",
+							"pm.expect(jsonData.data[19].id).to.be.a('string');",
+							"});",
+							"",
+							"pm.test(\"Check body data[20].id is undefined\", function () {",
+							"pm.expect(jsonData.data[20]).to.be.an('undefined');",
+							"});",
+							"",
+							"pm.test(\"Check limit is 20\", function () {",
+							"    pm.expect(jsonData.limit).to.eql(20);",
+							"});",
+							"",
+							"pm.test(\"Check page is 0\", function () {",
+							"    pm.expect(jsonData.page).to.eql(0);",
+							"});",
+							"",
+							"pm.test(\"Check body total is number\", function () {",
+							"    pm.expect(jsonData.total).to.be.a('number');",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/post",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreatePost",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 OK\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Status code is OK\", function () {",
+							"    pm.response.to.have.status(\"OK\");",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 1000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							" var jsonData = pm.response.json();",
+							"",
+							"pm.collectionVariables.set(\"PostId\", jsonData.id);",
+							"",
+							"pm.test(\"Check body image\", function () {",
+							"    pm.expect(jsonData.image).to.eql(\"https://img.dummyapi.io/photo-1556877986-d40833ec88b4.jpg\");",
+							"});",
+							"",
+							"pm.test(\"Check body likes\", function () {",
+							"    pm.expect(jsonData.likes).to.eql(0);",
+							"});",
+							"",
+							"pm.test(\"Check body link\", function () {",
+							"    pm.expect(jsonData.link).to.eql(\"\");",
+							"});",
+							"",
+							"pm.test(\"Check body tags\", function () {",
+							"    pm.expect(jsonData.tags).to.eql([\"asasas\",\"asasasasasas\"]);",
+							"});",
+							"",
+							"pm.test(\"Check body text\", function () {",
+							"    pm.expect(jsonData.text).to.eql(\"proverka\");",
+							"});",
+							"",
+							"pm.test(\"Check body owner\", function () {",
+							"    pm.expect(jsonData.owner).to.eql({",
+							"        \"id\": \"60d0fe4f5311236168a109d4\",",
+							"        \"title\": \"mssssss\",",
+							"        \"firstName\": \"Anna777\",",
+							"        \"lastName\": \"Milk\",",
+							"        \"picture\": \"https://randomuser.me/api/portraits/med/men/3.jpg\",",
+							"        \"gender\": \"male\",",
+							"        \"dateOfBirth\": \"1953-10-15T02:26:17.794Z\",",
+							"        \"phone\": \"993-465-335\",",
+							"        \"location\": {",
+							"            \"street\": \"2580, Calle de Ferraz\",",
+							"            \"city\": \"Albacete\",",
+							"            \"state\": \"Islas Baleares\",",
+							"            \"country\": \"Spain\",",
+							"            \"timezone\": \"-3:30\"",
+							"        }",
+							"    });",
+							"});",
+							"",
+							"pm.test(\"Check body id is string\", function () {",
+							"pm.expect(jsonData.id).to.be.a('string');",
+							"});",
+							"",
+							"pm.test(\"Check body publishDate is string\", function () {",
+							"pm.expect(jsonData.publishDate).to.be.a('string');",
+							"});",
+							"",
+							"pm.test(\"Check body updatedDate is string\", function () {",
+							"pm.expect(jsonData.updatedDate).to.be.a('string');",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"image\": \"https://img.dummyapi.io/photo-1556877986-d40833ec88b4.jpg\",\n    \"tags\": [\n        \"asasas\",\n        \"asasasasasas\"\n    ],\n    \"likes\": 0,\n    \"text\": \"proverka\",\n    \"owner\": \"60d0fe4f5311236168a109d4\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/post/create",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"post",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPostByID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 OK\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Status code is OK\", function () {",
+							"    pm.response.to.have.status(\"OK\");",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 1000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							" var jsonData = pm.response.json();",
+							"",
+							"pm.collectionVariables.set(\"PostId\", jsonData.id);",
+							"",
+							"pm.test(\"Check body image\", function () {",
+							"    pm.expect(jsonData.image).to.eql(\"https://img.dummyapi.io/photo-1556877986-d40833ec88b4.jpg\");",
+							"});",
+							"",
+							"pm.test(\"Check body likes\", function () {",
+							"    pm.expect(jsonData.likes).to.eql(0);",
+							"});",
+							"",
+							"pm.test(\"Check body link\", function () {",
+							"    pm.expect(jsonData.link).to.eql(\"\");",
+							"});",
+							"",
+							"pm.test(\"Check body tags\", function () {",
+							"    pm.expect(jsonData.tags).to.eql([\"asasas\",\"asasasasasas\"]);",
+							"});",
+							"",
+							"pm.test(\"Check body text\", function () {",
+							"    pm.expect(jsonData.text).to.eql(\"proverka\");",
+							"});",
+							"",
+							"pm.test(\"Check body owner\", function () {",
+							"    pm.expect(jsonData.owner).to.eql({",
+							"        \"id\": \"60d0fe4f5311236168a109d4\",",
+							"        \"title\": \"mssssss\",",
+							"        \"firstName\": \"Anna777\",",
+							"        \"lastName\": \"Milk\",",
+							"        \"picture\": \"https://randomuser.me/api/portraits/med/men/3.jpg\",",
+							"        \"gender\": \"male\",",
+							"        \"dateOfBirth\": \"1953-10-15T02:26:17.794Z\",",
+							"        \"phone\": \"993-465-335\",",
+							"        \"location\": {",
+							"            \"street\": \"2580, Calle de Ferraz\",",
+							"            \"city\": \"Albacete\",",
+							"            \"state\": \"Islas Baleares\",",
+							"            \"country\": \"Spain\",",
+							"            \"timezone\": \"-3:30\"",
+							"        }",
+							"    });",
+							"});",
+							"",
+							"pm.test(\"Check body id is string\", function () {",
+							"pm.expect('jsonData.id').to.be.a('string');",
+							"});",
+							"",
+							"pm.test(\"Check body publishDate is string\", function () {",
+							"pm.expect('jsonData.publishDate').to.be.a('string');",
+							"});",
+							"",
+							"pm.test(\"Check body updatedDate is string\", function () {",
+							"pm.expect('jsonData.updatedDate').to.be.a('string');",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/post/{{PostId}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"post",
+						"{{PostId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePost",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 OK\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Status code is OK\", function () {",
+							"    pm.response.to.have.status(\"OK\");",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 1000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							" var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Check body image\", function () {",
+							"    pm.expect(jsonData.image).to.eql(\"https://img.dummyapi.io/photo-1556877986-d40833ec88b4.jpg\");",
+							"});",
+							"",
+							"pm.test(\"Check body likes\", function () {",
+							"    pm.expect(jsonData.likes).to.eql(0);",
+							"});",
+							"",
+							"pm.test(\"Check body link\", function () {",
+							"    pm.expect(jsonData.link).to.eql(\"\");",
+							"});",
+							"",
+							"pm.test(\"Check body tags\", function () {",
+							"    pm.expect(jsonData.tags).to.eql([\"asasas\",\"asasasasasas\"]);",
+							"});",
+							"",
+							"pm.test(\"Check body text\", function () {",
+							"    pm.expect(jsonData.text).to.eql(\"UpdatedPost\");",
+							"});",
+							"",
+							"pm.test(\"Check body owner\", function () {",
+							"    pm.expect(jsonData.owner).to.eql({",
+							"        \"id\": \"60d0fe4f5311236168a109d4\",",
+							"        \"title\": \"mssssss\",",
+							"        \"firstName\": \"Anna777\",",
+							"        \"lastName\": \"Milk\",",
+							"        \"picture\": \"https://randomuser.me/api/portraits/med/men/3.jpg\",",
+							"        \"gender\": \"male\",",
+							"        \"dateOfBirth\": \"1953-10-15T02:26:17.794Z\",",
+							"        \"phone\": \"993-465-335\",",
+							"        \"location\": {",
+							"            \"street\": \"2580, Calle de Ferraz\",",
+							"            \"city\": \"Albacete\",",
+							"            \"state\": \"Islas Baleares\",",
+							"            \"country\": \"Spain\",",
+							"            \"timezone\": \"-3:30\"",
+							"        }",
+							"    });",
+							"});",
+							"",
+							"pm.test(\"Check body id is string\", function () {",
+							"pm.expect('jsonData.id').to.be.a('string');",
+							"});",
+							"",
+							"pm.test(\"Check body publishDate is string\", function () {",
+							"pm.expect('jsonData.publishDate').to.be.a('string');",
+							"});",
+							"",
+							"pm.test(\"Check body updatedDate is string\", function () {",
+							"pm.expect('jsonData.updatedDate').to.be.a('string');",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"image\": \"https://img.dummyapi.io/photo-1556877986-d40833ec88b4.jpg\",\n    \"tags\": [\n        \"asasas\",\n        \"asasasasasas\"\n    ],\n    \"likes\": 0,\n    \"text\": \"UpdatedPost\",\n    \"owner\": \"60d0fe4f5311236168a109d4\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/post/{{PostId}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"post",
+						"{{PostId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletePost",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 OK\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Status code is OK\", function () {",
+							"    pm.response.to.have.status(\"OK\");",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 1000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"Check body id is PostId\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.eql(pm.collectionVariables.get(\"PostId\"));",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"image\": \"dfghjkl;'\",\n    \"tags\": [\n        \"asasas\",\n        \"asasasasasas\"\n    ],\n    \"likes\": 0,\n    \"text\": \"sdfghjkl;'fghjkl;'\",\n    \"owner\": \"60d0fe4f5311236168a109d4\"\n}"
+				},
+				"url": {
+					"raw": "{{host}}/post/{{PostId}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"post",
+						"{{PostId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{app-id}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "app-id",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "PostId",
+			"value": "690098ce2fa4278e39485d1b"
+		}
+	]
+}
