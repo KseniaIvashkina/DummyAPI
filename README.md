@@ -80,7 +80,7 @@ _____
 Также майнд-карту можно скачать [здесь](https://github.com/KseniaIvashkina/DummyAPI/blob/main/dummyAPI.xmind)
 
 ## Коллекции POSTMAN
-Ниже предствлена выгруженная [коллекция POSTMAN](https://github.com/KseniaIvashkina/DummyAPI/blob/main/Post_Scripts.postman_collection.json)
+Ниже представлены выгруженная [коллекция POSTMAN](https://github.com/KseniaIvashkina/DummyAPI/blob/main/Post_Scripts.postman_collection.json)
 а также [окружение и переменные](https://github.com/KseniaIvashkina/DummyAPI/blob/main/DummyAPI.postman_environment%20.json)
 
 
