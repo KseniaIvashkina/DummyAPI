@@ -73,7 +73,7 @@ _____
 ## Майнд-карта
 Данная майнд-карта представляет собой набор тестов для тестирования объекта **POST**. Подробная проверка расписана для **Get List** и **Create User**.
 
-![Alt-текст](https://drive.google.com/file/d/12QedbIb1rk22Iy8l4LbFlSehwTKxPAFL/view?usp=sharing)
+![Alt-текст](https://disk.yandex.ru/i/gViM8uCQ4BHN6A)
 
 Также майнд-карту можно скачать [здесь](https://github.com/KseniaIvashkina/DummyAPI/blob/main/dummyAPI.xmind)
 
